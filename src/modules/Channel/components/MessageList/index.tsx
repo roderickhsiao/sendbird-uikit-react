@@ -132,6 +132,7 @@ const MessageList: React.FC<MessageListProps> = ({
         && (!isBottomMessageAffected || scrollBottom < SCROLL_BUFFER)) {
         // Move the scroll as much as the height of the message has changed
         current.scrollTop += bottom - scrollBottom;
+        current.style.scrollBehavior = 'smooth';
       }
     }
   };
