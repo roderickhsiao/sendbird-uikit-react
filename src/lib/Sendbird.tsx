@@ -24,7 +24,7 @@ import { UIKitConfigProvider, useUIKitConfig } from '@sendbird/uikit-tools';
 
 import { VoiceMessageProvider } from './VoiceMessageProvider';
 import { LocalizationProvider } from './LocalizationContext';
-import { MediaQueryProvider } from './MediaQueryContext';
+import { MediaQueryProvider, useMediaQueryContext } from './MediaQueryContext';
 import getStringSet from '../ui/Label/stringSet';
 import { VOICE_RECORDER_DEFAULT_MAX, VOICE_RECORDER_DEFAULT_MIN } from '../utils/consts';
 import { uikitConfigMapper } from './utils/uikitConfigMapper';
@@ -152,6 +152,7 @@ const SendbirdSDK = ({
     userMention = {},
     isREMUnitEnabled = false,
   } = config;
+  const { isMobile } = useMediaQueryContext();
   const [logger, setLogger] = useState(LoggerFactory(logLevel as LogLevel));
   const [pubSub] = useState(pubSubFactory());
   const [sdkStore, sdkDispatcher] = useReducer(sdkReducers, sdkInitialState);
@@ -167,6 +168,7 @@ const SendbirdSDK = ({
     appId,
     userId,
     accessToken,
+    isMobile,
   }, {
     logger,
     nickname,
